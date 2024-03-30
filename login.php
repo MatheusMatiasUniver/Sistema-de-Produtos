@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($user && password_verify($password, $user['senha'])) {
             $_SESSION["user_id"] = $user['id'];
-            header("Location: navegacao.html");
+            header("Location: lista_produtos.php");
             exit();
         } else {echo "Usuário ou senha incorretos.";}
     } else { echo "Por favor, forneça usuário e senha.";}
