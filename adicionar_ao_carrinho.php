@@ -1,7 +1,6 @@
 <?php
 session_start();
-
-$postData = json_decode(file_get_contents('php://input'), true); // Obter os dados POST em formato JSON
+$postData = json_decode(file_get_contents('php://input'), true);
 if (!isset($postData['produtos_selecionados']) || !is_array($postData['produtos_selecionados'])) {
     http_response_code(400);
     echo "Produtos não fornecidos ou em formato inválido.";

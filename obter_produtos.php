@@ -1,12 +1,10 @@
 <?php
 require_once 'conexao.php';
 
-$query = "SELECT produtos.id, produtos.nome, produtos.preco, fornecedores.id AS fornecedor_id, fornecedores.nome AS nome_fornecedor
-          FROM produtos
-          INNER JOIN fornecedores ON produtos.fornecedor_id = fornecedores.id";
+$query = "SELECT id, nome, preco FROM produtos";
+$exec = $db->query($query);
+$produtos = $exec->fetchAll(PDO::FETCH_ASSOC);
 
-$stmt = $db->query($query);
-$produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+header('Content-Type: application/json');
 echo json_encode($produtos);
 ?>

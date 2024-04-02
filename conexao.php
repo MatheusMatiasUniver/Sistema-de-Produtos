@@ -13,8 +13,8 @@ $options = array(
 try {
     $db = new PDO("mysql:host=$host", $username, $password, $options);
 
-    $exec = $db->query("SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '$dbname'");
-    $exists = $exec->fetchColumn();
+    $stmt = $db->query("SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '$dbname'");
+    $exists = $stmt->fetchColumn();
 
     if (!$exists) {
         $db->exec("CREATE DATABASE IF NOT EXISTS $dbname");
