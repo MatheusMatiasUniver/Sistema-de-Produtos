@@ -2,7 +2,7 @@ Matheus Maiante Marques de Almeida R.A: 227009-1
 
 João Vitor Alcântara Corrêa R.A: 238744-1
 
-Luan Virgílio Carreira Nascimento Alves
+Luan Virgílio Carreira Nascimento Alves R.A: 228889-1
 
 João Guilherme Chagas Piaia R.A: 229114-1
 
