@@ -1,10 +1,10 @@
 <?php
 require_once 'conexao.php';
 
-$query = "SELECT * FROM fornecedores";
-$stmt = $db->query($query);
-$fornecedores = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$query = "SELECT id, nome, preco FROM produtos";
+$exec = $db->query($query);
+$produtos = $exec->fetchAll(PDO::FETCH_ASSOC);
 
 header('Content-Type: application/json');
-echo json_encode($fornecedores);
+echo json_encode($produtos);
 ?>

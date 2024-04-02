@@ -8,11 +8,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $db = new PDO("mysql:host=localhost;dbname=sistema", "root", "");
         $query = "SELECT id, senha FROM usuarios WHERE username = :username";
-        $stmt = $db->prepare($query);
-        $stmt->bindParam(':username', $username);
-        $stmt->execute();
+        $exec = $db->prepare($query);
+        $exec->bindParam(':username', $username);
+        $exec->execute();
 
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $user = $exec->fetch(PDO::FETCH_ASSOC);
         if ($user && password_verify($password, $user['senha'])) {
             $_SESSION["user_id"] = $user['id'];
             header("Location: lista_produtos.php");

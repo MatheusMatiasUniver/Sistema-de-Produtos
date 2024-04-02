@@ -1,19 +1,16 @@
 <?php
 session_start();
+require 'conexao.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['produtoId'])) {
-    $produtoId = $_POST['produtoId'];
-
-    foreach ($_SESSION['cesta_compras'] as $index => $produto) {
-        if ($produto['id'] == $produtoId) {
-            unset($_SESSION['cesta_compras'][$index]);
-            break;
-        }
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['produto_id'])) {
+    $produtoId = $_POST['produto_id'];
+    
+    if (isset($_SESSION['carrinho_compras']) && in_array($produtoId, $_SESSION['carrinho_compras'])) {
+        $key = array_search($produtoId, $_SESSION['carrinho_compras']);
+        unset($_SESSION['carrinho_compras'][$key]);
+        echo "Produto removido com sucesso!";
+    } else {
+        echo "Produto não encontrado.";
     }
-
-    $_SESSION['cesta_compras'] = array_values($_SESSION['cesta_compras']);
 }
-
-header('Content-Type: application/json');
-echo json_encode(['success' => true, 'message' => 'Produto removido do carrinho com sucesso!']);
 ?>

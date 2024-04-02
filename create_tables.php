@@ -36,7 +36,6 @@ try {
     $db->exec($sql_produtos);
     $db->exec($sql_usuarios);
 
-    echo "Tabelas criadas com sucesso!";
 } catch (PDOException $e) {
     die("Erro ao criar as tabelas: " . $e->getMessage());
 }

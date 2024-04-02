@@ -8,10 +8,10 @@ class Produto {
 
     public function cadastrarProduto($nome, $preco) {
         $query = "INSERT INTO produtos (nome, preco) VALUES (:nome, :preco)";
-        $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':nome', $nome);
-        $stmt->bindParam(':preco', $preco);
-        return $stmt->execute();
+        $exec = $this->db->prepare($query);
+        $exec->bindParam(':nome', $nome);
+        $exec->bindParam(':preco', $preco);
+        return $exec->execute();
     }
 }
 ?>
