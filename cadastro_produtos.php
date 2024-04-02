@@ -2,9 +2,9 @@
 require_once 'conexao.php';
 
 $query = "SELECT id, nome FROM fornecedores";
-$stmt = $db->prepare($query);
-$stmt->execute();
-$fornecedores = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$exec = $db->prepare($query);
+$exec->execute();
+$fornecedores = $exec->fetchAll(PDO::FETCH_ASSOC);
 print_r($fornecedores);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -13,12 +13,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fornecedor_id = $_POST["fornecedor_id"];
 
     $query = "INSERT INTO produtos (nome, preco, fornecedor_id) VALUES (:nome, :preco, :fornecedor_id)";
-    $stmt = $db->prepare($query);
-    $stmt->bindParam(':nome', $nome);
-    $stmt->bindParam(':preco', $preco);
-    $stmt->bindParam(':fornecedor_id', $fornecedor_id);
+    $exec = $db->prepare($query);
+    $exec->bindParam(':nome', $nome);
+    $exec->bindParam(':preco', $preco);
+    $exec->bindParam(':fornecedor_id', $fornecedor_id);
 
-    if ($stmt->execute()) {
+    if ($exec->execute()) {
         echo "<script>alert('Produto cadastrado com sucesso.');</script>";
         header("Location: lista_produtos.php");
         exit();

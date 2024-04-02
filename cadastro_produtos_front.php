@@ -9,6 +9,17 @@
 </head>
 
 <body class="bg-gray-100">
+<nav class="bg-blue-500 text-white py-4">
+      <div class="container mx-auto">
+          <ul class="flex justify-center flex-wrap">
+              <li class="mx-4 my-2"><a href="lista_produtos.php" class="hover:text-gray-300">Lista de Produtos</a></li>
+              <li class="mx-4 my-2"><a href="cadastro_produtos_front.php" class="hover:text-gray-300">Cadastro de Produtos</a></li>
+              <li class="mx-4 my-2"><a href="cadastro_fornecedores.html" class="hover:text-gray-300">Cadastro de Fornecedores</a></li>
+              <li class="mx-4 my-2"><a href="lista_fornecedores.php" class="hover:text-gray-300">Lista de Fornecedores</a></li>
+              <li class="mx-4 my-2"><a href="carrinho_compras.html" class="hover:text-gray-300">Carrinho de Compras</a></li>
+          </ul>
+      </div>
+  </nav>
     <div class="container mx-auto mt-5">
         <div class="flex justify-center">
             <div class="w-full md:w-1/2">

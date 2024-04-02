@@ -6,12 +6,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $contato = $_POST["contato"];
 
     $query = "INSERT INTO fornecedores (nome, contato) VALUES (:nome, :contato)";
-    $stmt = $db->prepare($query);
-    $stmt->bindParam(':nome', $nome);
-    $stmt->bindParam(':contato', $contato);
+    $exec = $db->prepare($query);
+    $exec->bindParam(':nome', $nome);
+    $exec->bindParam(':contato', $contato);
 
-    if ($stmt->execute()) {
-        echo "<script>alert('Produto cadastrado com sucesso.');</script>";
+    if ($exec->execute()) {
+        echo "<script>alert('Fornecedor cadastrado com sucesso.');</script>";
+        header("Location: lista_fornecedores.php");
+        exit();
     } else {
         echo "Erro ao cadastrar o fornecedor.";
     }

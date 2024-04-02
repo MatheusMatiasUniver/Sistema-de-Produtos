@@ -8,11 +8,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hashed_password = password_hash($password, CRYPT_SHA256);
 
     $query = "INSERT INTO usuarios (username, senha) VALUES (:username, :senha)";
-    $stmt = $db->prepare($query);
-    $stmt->bindParam(':username', $username);
-    $stmt->bindParam(':senha', $hashed_password);
+    $exec = $db->prepare($query);
+    $exec->bindParam(':username', $username);
+    $exec->bindParam(':senha', $hashed_password);
 
-    if ($stmt->execute()) {
+    if ($exec->execute()) {
         header("Location: login.html");
         exit();
     } else {

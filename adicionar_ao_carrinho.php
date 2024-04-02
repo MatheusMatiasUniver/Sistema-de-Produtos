@@ -1,17 +1,22 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['cesta_compras'])) {
-    $_SESSION['cesta_compras'] = [];
+$postData = json_decode(file_get_contents('php://input'), true); // Obter os dados POST em formato JSON
+if (!isset($postData['produtos_selecionados']) || !is_array($postData['produtos_selecionados'])) {
+    http_response_code(400);
+    echo "Produtos não fornecidos ou em formato inválido.";
+    exit();
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $produtos = json_decode($_POST['produtos'], true);
-    foreach ($produtos as $produto) {
-        $_SESSION['cesta_compras'][] = $produto;
+if (!isset($_SESSION['carrinho_compras'])) {
+    $_SESSION['carrinho_compras'] = [];
+}
+
+foreach ($postData['produtos_selecionados'] as $produtoId) {
+    if (!in_array($produtoId, $_SESSION['carrinho_compras'])) {
+        $_SESSION['carrinho_compras'][] = $produtoId;
     }
 }
 
-header('Content-Type: application/json');
-echo json_encode(['success' => true, 'message' => 'Produto adicionado ao carrinho com sucesso!']);
+echo "Produtos adicionados ao carrinho com sucesso!";
 ?>
