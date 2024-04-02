@@ -4,89 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produtos</title>
+    <title>Lista de Produtos</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
 <body class="bg-gray-100">
-<nav class="bg-blue-500 text-white py-4">
-    <div class="container mx-auto">
-        <ul class="flex justify-center flex-wrap">
-            <li class="mx-4 my-2"><a href="lista_produtos.php" class="hover:text-gray-300">Lista de Produtos</a></li>
-            <li class="mx-4 my-2"><a href="cadastro_usuarios.html" class="hover:text-gray-300">Cadastro de Usuários</a></li>
-            <li class="mx-4 my-2"><a href="cadastro_produtos_front.php" class="hover:text-gray-300">Cadastro de Produtos</a></li>
-            <li class="mx-4 my-2"><a href="cadastro_fornecedores.html" class="hover:text-gray-300">Cadastro de Fornecedores</a></li>
-            <li class="mx-4 my-2"><a href="cesta_compras.html" class="hover:text-gray-300">Cesta de Compras</a></li>
-        </ul>
-    </div>
-</nav>
-
-    <div class="container mx-auto mt-5">
-        <div class="flex justify-center">
-            <div class="w-full md:w-1/2">
-                <div class="border-double border-4 border-black rounded-lg shadow-md">
-                    <div class="p-4 border-b">
-                        <h1 class="font-bold">Lista de Produtos</h1>
-                    </div>
-                    <div class="p-4">
-                        <button onclick="adicionarAoCarrinho()">Adicionar ao Carrinho</button>
-                        <ul id="lista-produtos" class="space-y-2">
-                            
-                        </ul>
-                    </div>
-                </div>
-            </div>
+    <nav class="bg-blue-500 text-white py-4">
+        <div class="container mx-auto">
+            <ul class="flex justify-center flex-wrap">
+                <li class="mx-4 my-2"><a href="lista_produtos.php" class="hover:text-gray-300">Lista de Produtos</a></li>
+                <li class="mx-4 my-2"><a href="cadastro_produtos_front.php" class="hover:text-gray-300">Cadastro de Produtos</a></li>
+                <li class="mx-4 my-2"><a href="cadastro_fornecedores.html" class="hover:text-gray-300">Cadastro de Fornecedores</a></li>
+                <li class="mx-4 my-2"><a href="lista_fornecedores.php" class="hover:text-gray-300">Lista de Fornecedores</a></li>
+                <li class="mx-4 my-2"><a href="carrinho_compras.html" class="hover:text-gray-300">Carrinho de Compras</a></li>
+            </ul>
         </div>
+    </nav>
+    <div class="container mx-auto py-8">
+        <h2 class="text-2xl font-bold mb-4">Lista de Produtos</h2>
+        <form id="form-adicionar-carrinho">
+            <ul id="lista-produtos" class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+
+            </ul>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md mt-4">Adicionar ao Carrinho</button>
+        </form>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        function carregarProdutos() {
-            fetch('obter_produtos.php')
-                .then(response => response.json())
-                .then(produtos => {
-                    $('#lista-produtos').empty();
-                    produtos.forEach(produto => {
-                        $('#lista-produtos').append(`<li class="flex items-center">
-                                                        <input type="checkbox" class="mr-2" value="${produto.id}">
-                                                        <div class="font-semibold mr-2">${produto.nome}:</div>
-                                                        <div class="text-green-500 font-semibold mr-2">${produto.preco}</div>
-                                                        <span class="text-gray-500">(Fornecedor: ${produto.nome_fornecedor} )</span></li>`);
-                    });
-                })
-                .catch(error => console.error('Erro ao carregar produtos:', error));
-        }
-
-        function adicionarAoCarrinho() {
-            const produtosSelecionados = [];
-            $('input[type="checkbox"]:checked').each(function() {
-                produtosSelecionados.push($(this).val());});
-            console.log(JSON.stringify(produtosSelecionados));
-
-            if (produtosSelecionados.length === 0) {
-                alert('Selecione pelo menos um produto para adicionar ao carrinho.');
-                return;}
-            fetch('adicionar_ao_carrinho.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ produtos: produtosSelecionados }),
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert(data.message);
-                    } else {
-                        alert('Erro ao adicionar produtos ao carrinho.');}
-                })
-                .catch(error => console.error('Erro ao adicionar produtos ao carrinho:', error));
-        }
-
-        $(document).ready(function () {
-            carregarProdutos();
-        });
-    </script>
+    <script src="lista_produtos.js"></script>
 </body>
 
 </html>

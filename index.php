@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+// Verifica se o banco de dados existe, se não, cria-o
+require_once 'conexao.php';
+require_once 'create_database.php';
+
 if (isset($_SESSION['logged_in'])) {
     header("Location: pagina_principal.php");
     exit();

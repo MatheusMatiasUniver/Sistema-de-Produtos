@@ -11,7 +11,17 @@ $options = array(
 );
 
 try {
+    $db = new PDO("mysql:host=$host", $username, $password, $options);
+
+    $exec = $db->query("SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '$dbname'");
+    $exists = $exec->fetchColumn();
+
+    if (!$exists) {
+        $db->exec("CREATE DATABASE IF NOT EXISTS $dbname");
+    }
+
     $db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password, $options);
 } catch (PDOException $e) {
     die("Erro ao conectar ao banco de dados: " . $e->getMessage());
 }
+?>
