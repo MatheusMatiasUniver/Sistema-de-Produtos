@@ -4,7 +4,7 @@ João Vitor Alcântara Corrêa R.A: 238744-1
 
 Luan Virgílio Carreira Nascimento Alves
 
-João Guilherme Chagas Piaia
+João Guilherme Chagas Piaia R.A: 229114-1
 
 Gustavo Basso Aquino R.A: 213664-1 
 
