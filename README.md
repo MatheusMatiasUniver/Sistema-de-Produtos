@@ -2,6 +2,8 @@
 
 Este projeto consiste em um sistema de gestão de produtos desenvolvido em PHP com banco de dados MySQL, como parte de um trabalho acadêmico. Ele permite cadastrar, listar e remover fornecedores e produtos, além de possibilitar a adição de produtos a um carrinho de compras.
 
+---
+
 ## Equipe
 
 - Matheus Maiante Marques de Almeida R.A: 227009-1
